@@ -21,19 +21,41 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        height: 200vh;
         width: 100vw;
       }
-      #matrix {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
+    #matrix {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    font-size: 20px; /* 預設字體大小 */
+    line-height: 1.2; /* 行高 */
+}
+
+/* 根據螢幕尺寸調整字體大小 */
+@media (max-width: 768px) {
+    #matrix {
+        font-size: 14px; /* 手機螢幕較小，字體縮小 */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    #matrix {
+        font-size: 18px; /* 平板螢幕中等，字體中等大小 */
+    }
+}
+
+@media (min-width: 1025px) {
+    #matrix {
+        font-size: 20px; /* 桌面螢幕較大，字體較大 */
+    }
+}
       #love-container {
         position: absolute;
         top: 50%;
@@ -46,27 +68,54 @@
 .love-text {
     font-weight: bold;
     opacity: 0; /* 初始透明度為 0 */
-    transition: opacity 3s ease-in-out, color 0.8s ease-in-out;
-    color: rgba(255, 105, 180, 0.7); /* 初始顏色為粉紅色，帶透明度 */
+    transition: opacity 3s ease-in-out;
     text-align: center; /* 文字置中 */
+    white-space: nowrap; /* 防止文字換行 */
+}
+
+.love-text span {
+    display: inline-block; /* 讓每個字元可以獨立動畫，同時保持橫向排列 */
+    animation: bounce 1s infinite alternate; /* 跳動動畫 */
+}
+
+/* 為每個字元設置不同的動畫延遲 */
+.love-text span:nth-child(1) { animation-delay: 0s; } /* L */
+.love-text span:nth-child(2) { animation-delay: 0.1s; } /* o */
+.love-text span:nth-child(3) { animation-delay: 0.2s; } /* v */
+.love-text span:nth-child(4) { animation-delay: 0.3s; } /* e */
+.love-text span:nth-child(5) { animation-delay: 0.4s; } /*   (空格) */
+.love-text span:nth-child(6) { animation-delay: 0.5s; } /* Y */
+.love-text span:nth-child(7) { animation-delay: 0.6s; } /* o */
+.love-text span:nth-child(8) { animation-delay: 0.7s; } /* u */
+.love-text span:nth-child(9) { animation-delay: 0.8s; } /* ~ */
+.love-text span:nth-child(10) { animation-delay: 0.9s; } /* ~ */
+
+/* 跳動動畫 */
+@keyframes bounce {
+    0% {
+        transform: translateY(0); /* 起始位置 */
+    }
+    100% {
+        transform: translateY(-20px); /* 向上跳動 */
+    }
 }
 
 /* 根據螢幕尺寸調整文字大小 */
 @media (max-width: 768px) {
     .love-text {
-        font-size: 50px; /* 手機螢幕較小，文字縮小 */
+        font-size: 40px; /* 手機螢幕較小，文字縮小 */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .love-text {
-        font-size: 120px; /* 平板螢幕中等，文字中等大小 */
+        font-size: 100px; /* 平板螢幕中等，文字中等大小 */
     }
 }
 
 @media (min-width: 1025px) {
     .love-text {
-        font-size: 150px; /* 桌面螢幕較大，文字較大 */
+        font-size: 130px; /* 桌面螢幕較大，文字較大 */
     }
 }
 
@@ -97,16 +146,26 @@
   </head>
   <body>
     <div id="matrix"></div>
-    <div id="love-container">
-      <span class="star">✨</span>
-      <span class="love-text" id="love-message">Love You~~</span>
-      <span class="star">✨</span>
-    </div>
+<div id="love-container">
+    <span class="star">✨</span>
+    <span class="love-text" id="love-message">
+        <span>L</span>
+        <span>o</span>
+        <span>v</span>
+        <span>e</span>
+        <span> </span> <!-- 空格 -->
+        <span>Y</span>
+        <span>o</span>
+        <span>u</span>
+        <span>~</span>
+    </span>
+    <span class="star">✨</span>
+</div>
 
     <script>
       const width = Math.floor(window.innerWidth / 12);
       const flipsPerLine = 5;
-      const sleepTime = 100;
+      const sleepTime = 130;
       const ch = "1234567890qwertyuiopasdfghjklzxcvbnm,./';[]!@#$%^&*()-=_+";
       let switches = Array(width).fill(0);
       const matrixDiv = document.getElementById("matrix");
