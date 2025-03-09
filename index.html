@@ -43,18 +43,56 @@
         align-items: center;
         gap: 10px;
       }
-      .love-text {
-        font-size: 150px;
-        font-weight: bold;
-        opacity: 0; /* 初始透明度為 0 */
-        transition: opacity 3s ease-in-out, color 0.8s ease-in-out;
-        color: rgba(255, 105, 180, 0.7); /* 初始顏色為半透明白色 */
-      }
-      .star {
-        font-size: 30px;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-      }
+.love-text {
+    font-weight: bold;
+    opacity: 0; /* 初始透明度為 0 */
+    transition: opacity 3s ease-in-out, color 0.8s ease-in-out;
+    color: rgba(255, 105, 180, 0.7); /* 初始顏色為粉紅色，帶透明度 */
+    text-align: center; /* 文字置中 */
+}
+
+/* 根據螢幕尺寸調整文字大小 */
+@media (max-width: 768px) {
+    .love-text {
+        font-size: 50px; /* 手機螢幕較小，文字縮小 */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .love-text {
+        font-size: 120px; /* 平板螢幕中等，文字中等大小 */
+    }
+}
+
+@media (min-width: 1025px) {
+    .love-text {
+        font-size: 150px; /* 桌面螢幕較大，文字較大 */
+    }
+}
+
+/* 星星的大小也根據螢幕尺寸調整 */
+.star {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .star {
+        font-size: 20px; /* 手機螢幕較小，星星縮小 */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .star {
+        font-size: 25px; /* 平板螢幕中等，星星中等大小 */
+    }
+}
+
+@media (min-width: 1025px) {
+    .star {
+        font-size: 30px; /* 桌面螢幕較大，星星較大 */
+    }
+}
     </style>
   </head>
   <body>
