@@ -192,7 +192,7 @@
         const newLine = document.createElement("div");
         newLine.textContent = generateMatrixLine();
         matrixDiv.appendChild(newLine);
-        if (matrixDiv.children.length > Math.floor(window.innerHeight / 18)) {
+        if (matrixDiv.children.length > Math.floor(window.innerHeight / 12)) {
           matrixDiv.removeChild(matrixDiv.firstChild);
         }
         setTimeout(updateMatrix, sleepTime);
